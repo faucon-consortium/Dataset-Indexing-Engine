@@ -216,9 +216,9 @@
 	    <!-- FAUCON Cloud Computing Log Dataset Model  -->
 		<!-- ######################################### -->
 		<dependency>
-		    <groupId>org.faucon.dataset</groupId>
-		    <artifactId>cloud.log</artifactId>
-		    <version>0.0.1-SNAPSHOT</version>
+		    <groupId>org.faucon</groupId>
+		    <artifactId>sensu-log-model</artifactId>
+		    <version>0.1</version>
 		</dependency>
 			
 	
