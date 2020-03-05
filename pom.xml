@@ -1,0 +1,293 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.faucon.dataset</groupId>
+  <artifactId>ingestion</artifactId>
+  <version>0.1</version>
+
+
+	<properties>
+		<spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+ 		<spring.version>5.2.4.RELEASE</spring.version> <!--5.1.9.RELEASE -->
+ 		<jackson.version>2.9.10</jackson.version>
+ 
+ 		<elasticsearch.version>7.6.0</elasticsearch.version>
+		<log4j-2.version>2.12.1</log4j-2.version> <!-- 2.12.1 / 2.8.2-->
+			 		
+ 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      	<java.version>11</java.version> <!-- <java.version>1.8</java.version>  -->
+	</properties>
+
+	<dependencies>
+		<!-- ################################## -->
+	    <!-- Spring Boot Dependencies           -->
+	    <!-- ################################## -->
+	    <!-- Import dependency management from Spring Boot --> 
+		<dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-parent</artifactId>
+	        <version>${spring-boot.version}</version>
+	        <type>pom</type>
+	        <!--  <scope>import</scope> -->
+	    </dependency>
+	    
+	    
+	    <dependency>
+	    	<groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot</artifactId>
+	        <version>${spring-boot.version}</version>
+	        <type>jar</type>
+		</dependency>
+	    
+	   	<dependency>
+	    	<groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-test</artifactId>
+	        <version>${spring-boot.version}</version>
+	        <scope>test</scope>
+	    </dependency>
+	    
+	    <dependency>
+	    	<groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter</artifactId>
+	        <version>${spring-boot.version}</version>
+	    </dependency>
+	    
+	     <dependency>
+	     	<groupId>org.springframework.boot</groupId>
+	      	<artifactId>spring-boot-starter-logging</artifactId>
+	      	<version>${spring-boot.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+	    	<groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-web</artifactId>
+	        <version>${spring-boot.version}</version>
+	    </dependency>
+	    
+	    <!--  
+	    <dependency>
+			<groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-security</artifactId>
+	        <version>${spring-boot.version}</version>
+		</dependency>
+		-->
+
+	    <dependency>
+			<groupId>org.springframework</groupId>
+	        <artifactId>spring-core</artifactId>
+	        <version>${spring.version}</version>
+	        <exclusions>
+	        	<exclusion>
+	            	<groupId>commons-logging</groupId>
+	                <artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	
+		<!-- ################################## -->
+	    <!-- ElasticSearch Dependencies         -->
+	    <!-- ################################## -->
+		<!-- Elasticsearch subproject :libs:elasticsearch-core -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch-core -->
+		<dependency>
+		    <groupId>org.elasticsearch</groupId>
+		    <artifactId>elasticsearch-core</artifactId>
+		    <version>${elasticsearch.version}</version>
+		</dependency>
+	
+		<!-- Elasticsearch subproject :client:rest-high-level -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
+		<dependency>
+		    <groupId>org.elasticsearch.client</groupId>
+		    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+		    <version>${elasticsearch.version}</version>
+		</dependency>
+		
+		<!-- Elasticsearch subproject :client:rest -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client -->
+		<dependency>
+		    <groupId>org.elasticsearch.client</groupId>
+		    <artifactId>elasticsearch-rest-client</artifactId>
+		    <version>${elasticsearch.version}</version>
+		</dependency>
+		
+		<!-- Elasticsearch subproject :server -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+		<dependency>
+		    <groupId>org.elasticsearch</groupId>
+		    <artifactId>elasticsearch</artifactId>
+		    <version>${elasticsearch.version}</version>
+		</dependency>
+	
+		<!--  This module adds the support parent-child queries and aggregations -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch.plugin/parent-join-client 
+		<dependency>
+		    <groupId>org.elasticsearch.plugin</groupId>
+		    <artifactId>parent-join-client</artifactId>
+		    <version>${elasticsearch.version}</version>
+		</dependency>
+		-->
+	
+		<!-- Elasticsearch subproject :libs:elasticsearch-ssl-config -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch-ssl-config 
+		<dependency>
+		    <groupId>org.elasticsearch</groupId>
+		    <artifactId>elasticsearch-ssl-config</artifactId>
+		    <version>${elasticsearch.version}</version>
+		</dependency>
+		-->
+	
+		<!-- ################################## -->
+	    <!-- Log4j 2 Logger Dependencies        -->
+	    <!-- ################################## -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>${log4j-2.version}</version>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <version>${log4j-2.version}</version>
+		</dependency>
+	
+		<!-- ################################## -->
+	    <!-- Jackson Dependencies               -->
+	    <!-- ################################## -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+	  		<groupId>com.fasterxml.jackson.core</groupId>
+	  		<artifactId>jackson-core</artifactId>
+	  		<version>${jackson.version}</version>
+	  	</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+	  		<groupId>com.fasterxml.jackson.core</groupId>
+	  		<artifactId>jackson-databind</artifactId>
+	  		<version>${jackson.version}</version>
+	  	</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+	  		<groupId>com.fasterxml.jackson.core</groupId>
+	  		<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv -->
+		<!--  
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-csv</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		-->
+		
+		<!-- ################################## -->
+	    <!-- Commons Dependencies               -->
+	    <!-- ################################## -->
+	
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.9</version>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-text</artifactId>
+    		<version>1.7</version>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<dependency>
+		    <groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils</artifactId>
+		    <version>1.9.4</version>
+		</dependency>
+
+		<!-- ######################################### -->
+	    <!-- FAUCON Cloud Computing Log Dataset Model  -->
+		<!-- ######################################### -->
+		<dependency>
+		    <groupId>org.faucon.dataset</groupId>
+		    <artifactId>cloud.log</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+			
+	
+	</dependencies>
+
+
+
+	<build>
+	
+		<resources>
+      		<resource>
+        		<directory>src/main/resources</directory>
+        		<includes>
+          			<include>**/*.properties</include>
+          			<include>**/*.xml</include>
+        		</includes>
+		       <!--  
+		        <excludes>
+		          <exclude>**/*test*.*</exclude>
+		        </excludes>
+		       -->
+      		</resource>
+    	</resources>
+	
+	<plugins>
+		<plugin>
+	    	<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.8.0</version>
+	        <configuration>
+	        	<source>${java.version}</source>
+	          	<target>${java.version}</target>
+	          	<showWarnings>true</showWarnings>
+				<showDeprecation>true</showDeprecation>
+	        </configuration>
+	    </plugin>
+
+		<plugin>
+        	<groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring-boot.version}</version>             
+            <configuration>    
+                <mainClass>org.faucon.ingestion.main.Ingestion</mainClass>
+            </configuration>
+			<executions>
+	        	<execution>
+	            	<goals>
+	                	<goal>repackage</goal>
+	                </goals>
+	            </execution>
+            </executions>            
+        </plugin>
+ 
+
+	</plugins>
+		
+	
+	<!-- https://www.mkyong.com/maven/create-a-fat-jar-file-maven-shade-plugin/ -->
+	<!-- https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html -->
+	<!-- https://stackoverflow.com/questions/49398894/unable-to-compile-simple-java-10-java-11-project-with-maven/51586202#51586202 -->
+	
+	<!-- https://stackoverflow.com/questions/41127364/how-to-pass-a-file-as-an-argument-to-jar-file-in-command-line -->
+	<!--  https://www.baeldung.com/java-run-jar-with-arguments -->
+	<!-- https://github.com/eugenp/tutorials/blob/master/core-java-modules/core-java-8-2/src/main/java/com/baeldung/jarArguments/JarExample.java -->
+	</build>
+	
+	<!-- https://stackoverflow.com/questions/50247085/setup-maven-for-jdk10 -->
+
+
+
+
+</project>
