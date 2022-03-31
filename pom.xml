@@ -6,7 +6,7 @@
 
 
 	<properties>
-		<spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+		<spring-boot.version>2.5.12</spring-boot.version>
  		<spring.version>5.2.4.RELEASE</spring.version> <!--5.1.9.RELEASE -->
  		<jackson.version>2.10.3</jackson.version>
  
